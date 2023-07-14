@@ -6,25 +6,28 @@ public class ReportManager {
     HashMap<Integer, MonthlyReport> monthlyReports = new HashMap<>();
     ArrayList<YearlyReport> yearlyReports = new ArrayList<>();
 
+    MonthlyReport monthlyReport;
+    YearlyReport yearlyReport;
 
-    public void readMonthlyReport () {
+
+    public void readMonthlyReport() {
         FileReader fileReader = new FileReader();
 
         for (int i = 1; i < 4; i++) {
-            String fileName = "m.20210" + i +".csv";
+            String fileName = "m.20210" + i + ".csv";
             ArrayList<String> lines = fileReader.readFileContents(fileName); // item_name,is_expense,quantity,unit_price
 
             if (lines.isEmpty()) {
-                System.out.println("Файл " +fileName+" пустой!");
+                System.out.println("Файл " + fileName + " пустой!");
                 return;
             }
 
-            ArrayList<MonthlyReportRecord> expenses =new ArrayList<>();
-            ArrayList<MonthlyReportRecord> incomes =new ArrayList<>();
+            ArrayList<MonthlyReportRecord> expenses = new ArrayList<>();
+            ArrayList<MonthlyReportRecord> incomes = new ArrayList<>();
 
             for (int j = 1; j < lines.size(); j++) {
                 String line = lines.get(j);
-                String [] values = line.split(",");
+                String[] values = line.split(",");
                 String itemName = values[0];
                 boolean isExpense = Boolean.parseBoolean(values[1]);
                 int quantity = Integer.parseInt(values[2]);
@@ -39,7 +42,8 @@ public class ReportManager {
                 }
             }
             monthlyReports.put(i, new MonthlyReport(expenses, incomes));
-            System.out.println("Файл " + fileName+ " считан");
+            monthlyReport = new MonthlyReport(expenses, incomes);
+            System.out.println("Файл " + fileName + " считан");
         }
 
     }
@@ -50,11 +54,11 @@ public class ReportManager {
         ArrayList<String> lines = fileReader.readFileContents(fileName); ////"month,amount,is_expense"
 
         if (lines.isEmpty()) {
-            System.out.println("Файл " +fileName+" пустой!");
+            System.out.println("Файл " + fileName + " пустой!");
             return;
         }
         ArrayList<YearlyReportRecord> yearlyReportRecords = new ArrayList<>();
-        for (int i=1; i<lines.size(); i++) {
+        for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i);
             String[] values = line.split(",");
             int month = Integer.parseInt(values[0]);
@@ -64,11 +68,12 @@ public class ReportManager {
             YearlyReportRecord yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
             yearlyReports.add(new YearlyReport(yearlyReportRecords));
         }
-        System.out.println("Файл " + fileName+ " считан");
+        yearlyReport = new YearlyReport(yearlyReportRecords);
+        System.out.println("Файл " + fileName + " считан");
     }
 
     public void compareMonthlyVsYearlyReport() {
-        if (monthlyReports== null) {
+        if (monthlyReports == null) {
             System.out.println("Месячный отчет не считан");
             return;
         } else if (yearlyReports == null) {
@@ -83,13 +88,15 @@ public class ReportManager {
             System.out.println("Месячный отчет не считан");
             return;
         }
-        System.out.println("Месячный отчет:");
+
     }
 
-
     public void printYearlyReport() {
+        if (yearlyReports == null) {
+            System.out.println("Годовой отчет не считан");
+            return;
 
 
-
+        }
     }
 }

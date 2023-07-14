@@ -11,19 +11,11 @@ public class MonthlyReportRecord {
         this.unitPrice=unitPrice;
     }
 
-    public String getItemName() {
-        return itemName;
-    }
 
     public boolean getExpense() {
         return isExpense;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public int getUnitPrice() {
-        return unitPrice;
-    }
 }
+

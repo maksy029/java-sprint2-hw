@@ -9,4 +9,5 @@ public class MonthlyReport {
         this.expenses = expenses;
         this.incomes = incomes;
     }
+
 }
