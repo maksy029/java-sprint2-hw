@@ -27,6 +27,7 @@ public class Main {
             }
             else if (command == 0) {
                 System.out.println("До скорой встречи!");
+                scanner.close();
                 return;
             }
             else {

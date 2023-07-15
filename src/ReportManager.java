@@ -42,7 +42,6 @@ public class ReportManager {
                 }
             }
             monthlyReports.put(i, new MonthlyReport(expenses, incomes));
-            monthlyReport = new MonthlyReport(expenses, incomes);
             System.out.println("Файл " + fileName + " считан");
         }
 
@@ -51,7 +50,7 @@ public class ReportManager {
     public void readYearlyReport() {
         FileReader fileReader = new FileReader();
         String fileName = "y.2021.csv";
-        ArrayList<String> lines = fileReader.readFileContents(fileName); ////"month,amount,is_expense"
+        ArrayList<String> lines = fileReader.readFileContents(fileName);
 
         if (lines.isEmpty()) {
             System.out.println("Файл " + fileName + " пустой!");
@@ -68,7 +67,6 @@ public class ReportManager {
             YearlyReportRecord yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
             yearlyReports.add(new YearlyReport(yearlyReportRecords));
         }
-        yearlyReport = new YearlyReport(yearlyReportRecords);
         System.out.println("Файл " + fileName + " считан");
     }
 
@@ -88,8 +86,13 @@ public class ReportManager {
             System.out.println("Месячный отчет не считан");
             return;
         }
-
+        System.out.println("Название месяца"+ monthlyReport.nameOfMonth());
+        System.out.println("Самый прибыльный товар" + monthlyReport.topProduct());
     }
+
+
+
+
 
     public void printYearlyReport() {
         if (yearlyReports == null) {

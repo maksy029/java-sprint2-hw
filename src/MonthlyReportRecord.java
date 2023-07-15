@@ -1,8 +1,8 @@
 public class MonthlyReportRecord {
-    String itemName;
-    boolean isExpense;
-    int quantity;
-    int unitPrice;
+   final String itemName;
+   final boolean isExpense;
+   final int quantity;
+   final int unitPrice;
 
     MonthlyReportRecord(String itemName, boolean isExpense, int quantity, int unitPrice) {
         this.itemName=itemName;
