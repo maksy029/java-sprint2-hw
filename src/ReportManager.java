@@ -6,8 +6,6 @@ public class ReportManager {
     HashMap<Integer, MonthlyReport> monthlyReports = new HashMap<>();
     ArrayList<YearlyReport> yearlyReports = new ArrayList<>();
 
- 
-
 
     public void readMonthlyReport() {
         FileReader fileReader = new FileReader();
@@ -64,7 +62,7 @@ public class ReportManager {
             boolean isExpense = Boolean.parseBoolean(values[2]);
 
             YearlyReportRecord yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
-
+            yearlyReportRecords.add(yearlyReportRecord);
 
             yearlyReports.add(new YearlyReport(yearlyReportRecords));
         }
