@@ -1,4 +1,3 @@
-
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -26,6 +25,7 @@ public class ReportManager {
                 String line = lines.get(j);
                 String[] values = line.split(",");
                 String itemName = values[0];
+
                 boolean isExpense = Boolean.parseBoolean(values[1]);
                 int quantity = Integer.parseInt(values[2]);
                 int unitPrice = Integer.parseInt(values[3]);
@@ -41,7 +41,6 @@ public class ReportManager {
             monthlyReports.put(i, new MonthlyReport(expenses, incomes));
             System.out.println("Файл " + fileName + " считан");
         }
-
     }
 
     public void readYearlyReport() {
@@ -53,17 +52,19 @@ public class ReportManager {
             System.out.println("Файл " + fileName + " пустой!");
             return;
         }
+
         ArrayList<YearlyReportRecord> yearlyReportRecords = new ArrayList<>();
+
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i);
             String[] values = line.split(",");
+
             int month = Integer.parseInt(values[0]);
             double amount = Double.parseDouble(values[1]);
             boolean isExpense = Boolean.parseBoolean(values[2]);
 
             YearlyReportRecord yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
             yearlyReportRecords.add(yearlyReportRecord);
-
             yearlyReports.add(new YearlyReport(yearlyReportRecords));
         }
         System.out.println("Файл " + fileName + " считан");
@@ -77,7 +78,6 @@ public class ReportManager {
             System.out.println("Годовой отчет не считан");
             return;
         }
-        
 
     }
 
@@ -86,9 +86,7 @@ public class ReportManager {
             System.out.println("Месячный отчет не считан");
             return;
         }
-        MonthlyReport monthlyReport = null;
-        System.out.println("Название месяца"+ monthlyReport.nameOfMonth());
-        System.out.println("Самый прибыльный товар" + monthlyReport.topProduct());
+
     }
     
     
@@ -96,8 +94,7 @@ public class ReportManager {
         if (yearlyReports == null) {
             System.out.println("Годовой отчет не считан");
             return;
-
-
         }
+
     }
 }
