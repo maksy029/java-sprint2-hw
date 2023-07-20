@@ -6,8 +6,7 @@ public class ReportManager {
     HashMap<Integer, MonthlyReport> monthlyReports = new HashMap<>();
     ArrayList<YearlyReport> yearlyReports = new ArrayList<>();
 
-    MonthlyReport monthlyReport;
-    YearlyReport yearlyReport;
+ 
 
 
     public void readMonthlyReport() {
@@ -65,6 +64,8 @@ public class ReportManager {
             boolean isExpense = Boolean.parseBoolean(values[2]);
 
             YearlyReportRecord yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
+
+
             yearlyReports.add(new YearlyReport(yearlyReportRecords));
         }
         System.out.println("Файл " + fileName + " считан");
@@ -78,6 +79,7 @@ public class ReportManager {
             System.out.println("Годовой отчет не считан");
             return;
         }
+        
 
     }
 
@@ -86,14 +88,12 @@ public class ReportManager {
             System.out.println("Месячный отчет не считан");
             return;
         }
+        MonthlyReport monthlyReport = null;
         System.out.println("Название месяца"+ monthlyReport.nameOfMonth());
         System.out.println("Самый прибыльный товар" + monthlyReport.topProduct());
     }
-
-
-
-
-
+    
+    
     public void printYearlyReport() {
         if (yearlyReports == null) {
             System.out.println("Годовой отчет не считан");
