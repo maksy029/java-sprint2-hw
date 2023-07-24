@@ -11,12 +11,5 @@ public class MonthlyReportRecord {
         this.quantity=quantity;
         this.unitPrice=unitPrice;
     }
-
-    public boolean getExpense() {
-
-        return isExpense;
-    }
-
-
 }
 

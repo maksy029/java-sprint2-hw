@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class Main {
 
     public static void main(String[] args) {
@@ -25,8 +24,7 @@ public class Main {
                 scanner.close();
                 return;
             } else {
-                System.out.println("Такой команды нет! Попробуй снова!");
-                System.out.println(" ");
+                System.out.println("Такой команды нет! Попробуй снова!\n");
             }
         }
     }

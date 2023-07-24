@@ -1,10 +1,10 @@
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
 public class ReportManager {
     HashMap<Integer, MonthlyReport> monthlyReports = new HashMap<>();
-    ArrayList<YearlyReport> yearlyReports = new ArrayList<>();
-
+    YearlyReport yearlyReport;
 
     public void readMonthlyReport() {
         FileReader fileReader = new FileReader();
@@ -18,8 +18,7 @@ public class ReportManager {
                 return;
             }
 
-            ArrayList<MonthlyReportRecord> expenses = new ArrayList<>();
-            ArrayList<MonthlyReportRecord> incomes = new ArrayList<>();
+            ArrayList<MonthlyReportRecord> monthlyReportRecords = new ArrayList<>();
 
             for (int j = 1; j < lines.size(); j++) {
                 String line = lines.get(j);
@@ -31,14 +30,9 @@ public class ReportManager {
                 int unitPrice = Integer.parseInt(values[3]);
 
                 MonthlyReportRecord monthlyReportRecord = new MonthlyReportRecord(itemName, isExpense, quantity, unitPrice);
-
-                if (monthlyReportRecord.getExpense()) {
-                    expenses.add(monthlyReportRecord);
-                } else {
-                    incomes.add(monthlyReportRecord);
-                }
+                monthlyReportRecords.add(monthlyReportRecord);
             }
-            monthlyReports.put(i, new MonthlyReport(expenses, incomes));
+            monthlyReports.put(i, new MonthlyReport(monthlyReportRecords));
             System.out.println("Файл " + fileName + " считан");
         }
     }
@@ -52,8 +46,7 @@ public class ReportManager {
             System.out.println("Файл " + fileName + " пустой!");
             return;
         }
-
-        ArrayList<YearlyReportRecord> yearlyReportRecords = new ArrayList<>();
+        ArrayList<YearlyReportRecord> yearlyReportRecords= new ArrayList<>();
 
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i);
@@ -63,38 +56,50 @@ public class ReportManager {
             double amount = Double.parseDouble(values[1]);
             boolean isExpense = Boolean.parseBoolean(values[2]);
 
-            YearlyReportRecord yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
+            YearlyReportRecord  yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
             yearlyReportRecords.add(yearlyReportRecord);
-            yearlyReports.add(new YearlyReport(yearlyReportRecords));
         }
+        yearlyReport = new YearlyReport(yearlyReportRecords);
+
         System.out.println("Файл " + fileName + " считан");
     }
 
     public void compareMonthlyVsYearlyReport() {
-        if (monthlyReports == null) {
+        if (monthlyReports.size() == 0) {
             System.out.println("Месячный отчет не считан");
-            return;
-        } else if (yearlyReports == null) {
+        } else if (yearlyReport == null) {
             System.out.println("Годовой отчет не считан");
-            return;
-        }
+        } else {
+            int sumExpense=0;
+            int sumIncomes=0;
 
+            }
     }
 
     public void printAllMonthlyReport() {
-        if (monthlyReports == null) {
+        if (monthlyReports.size() == 0) {
             System.out.println("Месячный отчет не считан");
             return;
         }
+        for (Integer month : monthlyReports.keySet()) {
+            for (int i = 0; i < monthlyReports.get(month).monthlyReportRecords.size(); i++) {
+                /*monthlyReports.get(month).monthlyReportRecords.get(i); // тут получаем каждый элемент листа*/
 
+            }
+        }
     }
-    
-    
+
     public void printYearlyReport() {
-        if (yearlyReports == null) {
+        if (yearlyReport == null) {
             System.out.println("Годовой отчет не считан");
             return;
         }
 
+        for (YearlyReportRecord record : yearlyReport.yearlyReportRecords) {
+            System.out.println("Месяц:" +record.month);
+            System.out.println("Cумма:" +record.amount);
+            System.out.println("Расход(true)/Доход(false):" +record.isExpense);
+        }
     }
+
 }

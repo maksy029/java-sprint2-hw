@@ -10,5 +10,4 @@ public class YearlyReportRecord {
         this.amount=amount;
         this.isExpense=isExpense;
     }
-
 }
