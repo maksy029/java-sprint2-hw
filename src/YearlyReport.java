@@ -28,6 +28,42 @@ public class YearlyReport {
         }
         return monthlyIncomes;
     }
+
+    //прибыль по каждому месяцу
+    public double getMonthlyProfit (int month) {
+        double monthlyProfit=0;
+        for (YearlyReportRecord yRecord : yearlyReportRecords) {
+            monthlyProfit=getMonthlyIncomes(month) - getMonthlyExpenses(month);
+            }
+          return monthlyProfit;
+    }
+
+    public double getAvgExpenses () {
+        double avgExpenses = 0;
+        double sumAllExpenses=0;
+        for (YearlyReportRecord yRecord : yearlyReportRecords) {
+            if (yRecord.isExpense) {
+                sumAllExpenses = sumAllExpenses+yRecord.amount;
+                avgExpenses=sumAllExpenses/yearlyReportRecords.size();
+            }
+        }
+        return avgExpenses;
+    }
+
+    public double getAvgIncomes() {
+        double avgIncomes = 0;
+        double sumAllIncomes = 0;
+
+        for (YearlyReportRecord yRecord : yearlyReportRecords) {
+            if (!yRecord.isExpense) {
+                sumAllIncomes = sumAllIncomes + yRecord.amount;
+                avgIncomes = sumAllIncomes / yearlyReportRecords.size();
+            }
+        }
+        return avgIncomes;
+    }
+
+
 }
 
 

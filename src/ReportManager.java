@@ -6,8 +6,6 @@ public class ReportManager {
     HashMap<Integer, MonthlyReport> monthlyReports = new HashMap<>();
     YearlyReport yearlyReport;
 
-
-
     public void readMonthlyReport() {
         FileReader fileReader = new FileReader();
 
@@ -39,14 +37,14 @@ public class ReportManager {
         }
     }
 
-    public void readYearlyReport() {
+    public String readYearlyReport() {
         FileReader fileReader = new FileReader();
         String fileName = "y.2021.csv";
         ArrayList<String> lines = fileReader.readFileContents(fileName);
 
         if (lines.isEmpty()) {
             System.out.println("Файл " + fileName + " пустой!");
-            return;
+
         }
         ArrayList<YearlyReportRecord> yearlyReportRecords= new ArrayList<>();
 
@@ -64,6 +62,7 @@ public class ReportManager {
         yearlyReport = new YearlyReport(yearlyReportRecords);
 
         System.out.println("Файл " + fileName + " считан");
+        return fileName;
     }
 
     public void compareMonthlyVsYearlyReport() {
@@ -93,8 +92,8 @@ public class ReportManager {
     public void printAllMonthlyReport() {
         if (monthlyReports.size() == 0) {
             System.out.println("Месячный отчет не считан");
-            return;
         }
+
        /* for (Integer month : monthlyReports.keySet()) {
             for (int i = 0; i < monthlyReports.get(month).monthlyReportRecords.size(); i++) {
                 monthlyReports.get(month).monthlyReportRecords.get(i); // тут получаем каждый элемент листа
@@ -105,14 +104,14 @@ public class ReportManager {
     public void printYearlyReport() {
         if (yearlyReport == null) {
             System.out.println("Годовой отчет не считан");
-            return;
+
+        } else {
+            System.out.println("Рассматриваемый год:+ "+readYearlyReport());
+            for (int i = 1; i <4 ; i++) {
+                System.out.println("Прибыль за месяц: "+i+ " = "+ yearlyReport.getMonthlyProfit(i));
+            }
+            System.out.println("Средний расход за год: " + yearlyReport.getAvgExpenses());
+            System.out.println("Средний доход за год: "+yearlyReport.getAvgIncomes());
         }
-
-        /*for (YearlyReportRecord record : yearlyReport.yearlyReportRecords) {
-            System.out.println("Месяц:" +record.month);
-            System.out.println("Cумма:" +record.amount);
-            System.out.println("Расход(true)/Доход(false):" +record.isExpense);
-        }*/
-
     }
 }

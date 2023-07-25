@@ -27,10 +27,8 @@ public class MonthlyReport {
             if (mRecord.isExpense) {
                 sumMonthlyExpenses = sumMonthlyExpenses+mRecord.unitPrice*mRecord.quantity;
             }
-
         }
         return sumMonthlyExpenses ;
     }
-
 
 }
