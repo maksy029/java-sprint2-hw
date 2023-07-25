@@ -7,6 +7,7 @@ public class ReportManager {
     YearlyReport yearlyReport;
 
 
+
     public void readMonthlyReport() {
         FileReader fileReader = new FileReader();
 
@@ -71,53 +72,23 @@ public class ReportManager {
         } else if (yearlyReport == null) {
             System.out.println("Годовой отчет не считан");
         } else {
-            for (YearlyReportRecord yRecord : yearlyReport.yearlyReportRecords) {
-                int sumExpenseMonth = 0;
-                int sumIncomesMonth = 0;
 
-                for (Integer month : monthlyReports.keySet()) {
-                    for (MonthlyReportRecord mRecord : monthlyReports.get(month).monthlyReportRecords) {
-                        if (mRecord.isExpense) {
-                            sumExpenseMonth = sumExpenseMonth + mRecord.quantity * mRecord.unitPrice;
-                        }
-                    }
-                }
-                for (Integer month : monthlyReports.keySet()) {
-                    for (MonthlyReportRecord mRecord : monthlyReports.get(month).monthlyReportRecords) {
-                        if (!mRecord.isExpense) {
-                            sumIncomesMonth = sumIncomesMonth + mRecord.quantity * mRecord.unitPrice;
-                        }
-                    }
-                }
-                System.out.println(sumExpenseMonth);
-                System.out.println(sumIncomesMonth);
+            for (int i = 1; i <4 ; i++) {
+                MonthlyReport monthlyReport=monthlyReports.get(i);
+               if (yearlyReport.getMonthlyExpenses(i) == monthlyReport.getSumMonthlyExpenses()) {
+                   System.out.println("Ошибок по расхдам в месяце: "+i+ " - нет!");
+                } else {
+                   System.out.println("Ошибка по расходам в месяце: "+ i);
+               }
+
+               if (yearlyReport.getMonthlyIncomes(i) == monthlyReport.getSumMonthlyIncomes()) {
+                   System.out.println("Ошибок по доходам в месяце: "+i+" - нет!");
+               } else {
+                   System.out.println("Ошибка по доходам в месяце: "+i);
+               }
             }
         }
     }
-
-
-                /*if (уRecord.isExpense) {
-                    System.out.println("Расходов: "+ yRecord.amount+" за месяц: " + yRecord.month);
-                }
-                if (!yRecord.isExpense) {
-                    System.out.println("Доходов: "+ yRecord.amount+" за месяц: " + yRecord.month);
-                }
-                }
-
-            for (Integer month : monthlyReports.keySet()) {
-
-                for (MonthlyReportRecord record : monthlyReports.get(month).monthlyReportRecords) {
-
-                    if (!record.isExpense) {
-                        sumIncomesMonth = sumIncomesMonth+record.quantity*record.unitPrice;
-                    }
-                }
-                System.out.println("Расходов: " + sumExpenseMonth+" за месяц: "+ month);
-                System.out.println("Доходов: "+ sumIncomesMonth+" за месяц: "+ month);
-            }
-            }*/
-
-
 
     public void printAllMonthlyReport() {
         if (monthlyReports.size() == 0) {
