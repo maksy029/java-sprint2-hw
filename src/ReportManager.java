@@ -79,7 +79,6 @@ public class ReportManager {
                     for (MonthlyReportRecord mRecord : monthlyReports.get(month).monthlyReportRecords) {
                         if (mRecord.isExpense) {
                             sumExpenseMonth = sumExpenseMonth + mRecord.quantity * mRecord.unitPrice;
-                            break;
                         }
                     }
                 }
@@ -87,7 +86,6 @@ public class ReportManager {
                     for (MonthlyReportRecord mRecord : monthlyReports.get(month).monthlyReportRecords) {
                         if (!mRecord.isExpense) {
                             sumIncomesMonth = sumIncomesMonth + mRecord.quantity * mRecord.unitPrice;
-                            break;
                         }
                     }
                 }
