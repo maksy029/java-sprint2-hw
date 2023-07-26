@@ -1,4 +1,3 @@
-
 public class MonthlyReportRecord {
     String itemName;
     boolean isExpense;

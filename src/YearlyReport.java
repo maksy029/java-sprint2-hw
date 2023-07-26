@@ -7,7 +7,6 @@ public class YearlyReport {
         this.yearlyReportRecords = yearlyReportRecords;
     }
 
-    // тут надо достать из внутреннего списка запись с расходами за переданный в параметрах месяц и вернуть их сумму
     public double getMonthlyExpenses(int month) {
         double monthlyExpenses = 0;
         for (YearlyReportRecord yRecord : yearlyReportRecords) {
@@ -18,7 +17,6 @@ public class YearlyReport {
         return monthlyExpenses;
     }
 
-    // а тут то же самое для доходов
     public double getMonthlyIncomes(int month) {
         double monthlyIncomes = 0;
         for (YearlyReportRecord yRecord : yearlyReportRecords) {
@@ -29,40 +27,42 @@ public class YearlyReport {
         return monthlyIncomes;
     }
 
-    //прибыль по каждому месяцу
     public double getMonthlyProfit(int month) {
-        double monthlyProfit = 0;
+        double monthlyProfit;
         monthlyProfit = getMonthlyIncomes(month) - getMonthlyExpenses(month);
 
         return monthlyProfit;
     }
 
     public double getAvgExpenses() {
-        double avgExpenses = 0;
+        double avgExpenses;
         double sumAllExpenses = 0;
+        int countExpenses = 0;
+
         for (YearlyReportRecord yRecord : yearlyReportRecords) {
             if (yRecord.isExpense) {
                 sumAllExpenses = sumAllExpenses + yRecord.amount;
-                avgExpenses = sumAllExpenses / yearlyReportRecords.size();
+                countExpenses++;
             }
         }
+        avgExpenses = sumAllExpenses / countExpenses;
         return avgExpenses;
     }
 
     public double getAvgIncomes() {
-        double avgIncomes = 0;
+        double avgIncomes;
         double sumAllIncomes = 0;
+        int countIncomes = 0;
 
         for (YearlyReportRecord yRecord : yearlyReportRecords) {
             if (!yRecord.isExpense) {
                 sumAllIncomes = sumAllIncomes + yRecord.amount;
-                avgIncomes = sumAllIncomes / yearlyReportRecords.size();
+                countIncomes++;
             }
         }
+        avgIncomes = sumAllIncomes / countIncomes;
         return avgIncomes;
     }
-
-
 }
 
 
