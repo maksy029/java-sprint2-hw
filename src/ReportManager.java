@@ -27,7 +27,12 @@ public class ReportManager {
                 int quantity = Integer.parseInt(values[2]);
                 int unitPrice = Integer.parseInt(values[3]);
 
-                MonthlyReportRecord monthlyReportRecord = new MonthlyReportRecord(itemName, isExpense, quantity, unitPrice);
+                MonthlyReportRecord monthlyReportRecord = new MonthlyReportRecord(
+                        itemName,
+                        isExpense,
+                        quantity,
+                        unitPrice
+                );
                 monthlyReportRecords.add(monthlyReportRecord);
             }
             monthlyReports.put(i, new MonthlyReport(monthlyReportRecords));
