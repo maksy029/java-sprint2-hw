@@ -46,7 +46,7 @@ public class ReportManager {
             System.out.println("Файл " + fileName + " пустой!");
 
         }
-        ArrayList<YearlyReportRecord> yearlyReportRecords= new ArrayList<>();
+        ArrayList<YearlyReportRecord> yearlyReportRecords = new ArrayList<>();
 
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i);
@@ -56,7 +56,7 @@ public class ReportManager {
             double amount = Double.parseDouble(values[1]);
             boolean isExpense = Boolean.parseBoolean(values[2]);
 
-            YearlyReportRecord  yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
+            YearlyReportRecord yearlyReportRecord = new YearlyReportRecord(month, amount, isExpense);
             yearlyReportRecords.add(yearlyReportRecord);
         }
         yearlyReport = new YearlyReport(yearlyReportRecords);
@@ -68,23 +68,23 @@ public class ReportManager {
     public void compareMonthlyVsYearlyReport() {
         if (monthlyReports.size() == 0) {
             System.out.println("Месячный отчет не считан");
-        } else if (yearlyReport == null) {
+        } else if (yearlyReport.yearlyReportRecords.isEmpty()) {
             System.out.println("Годовой отчет не считан");
         } else {
 
-            for (int i = 1; i <4 ; i++) {
-                MonthlyReport monthlyReport=monthlyReports.get(i);
-               if (yearlyReport.getMonthlyExpenses(i) == monthlyReport.getSumMonthlyExpenses()) {
-                   System.out.println("Ошибок по расхдам в месяце: "+i+ " - нет!");
+            for (int i = 1; i < 4; i++) {
+                MonthlyReport monthlyReport = monthlyReports.get(i);
+                if (yearlyReport.getMonthlyExpenses(i) == monthlyReport.getSumMonthlyExpenses()) {
+                    System.out.println("Ошибок по расхдам в месяце: " + i + " - нет!");
                 } else {
-                   System.out.println("Ошибка по расходам в месяце: "+ i);
-               }
+                    System.out.println("Ошибка по расходам в месяце: " + i);
+                }
 
-               if (yearlyReport.getMonthlyIncomes(i) == monthlyReport.getSumMonthlyIncomes()) {
-                   System.out.println("Ошибок по доходам в месяце: "+i+" - нет!");
-               } else {
-                   System.out.println("Ошибка по доходам в месяце: "+i);
-               }
+                if (yearlyReport.getMonthlyIncomes(i) == monthlyReport.getSumMonthlyIncomes()) {
+                    System.out.println("Ошибок по доходам в месяце: " + i + " - нет!");
+                } else {
+                    System.out.println("Ошибка по доходам в месяце: " + i);
+                }
             }
         }
     }
@@ -102,16 +102,17 @@ public class ReportManager {
     }
 
     public void printYearlyReport() {
-        if (yearlyReport == null) {
+        if (yearlyReport.yearlyReportRecords.isEmpty()) {
             System.out.println("Годовой отчет не считан");
 
+
         } else {
-            System.out.println("Рассматриваемый год:+ "+readYearlyReport());
-            for (int i = 1; i <4 ; i++) {
-                System.out.println("Прибыль за месяц: "+i+ " = "+ yearlyReport.getMonthlyProfit(i));
+            System.out.println("Рассматриваемый год: " + readYearlyReport());
+            for (int i = 1; i < 4; i++) {
+                System.out.println("Прибыль за месяц: " + i + " = " + yearlyReport.getMonthlyProfit(i));
             }
             System.out.println("Средний расход за год: " + yearlyReport.getAvgExpenses());
-            System.out.println("Средний доход за год: "+yearlyReport.getAvgIncomes());
+            System.out.println("Средний доход за год: " + yearlyReport.getAvgIncomes());
         }
     }
 }

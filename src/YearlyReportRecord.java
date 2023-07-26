@@ -6,8 +6,8 @@ public class YearlyReportRecord {
     boolean isExpense; //одно из двух значений: true или false. Обозначает, является ли запись тратой (true) или доходом (false).
 
     YearlyReportRecord(int month, double amount, boolean isExpense) {
-        this.month=month;
-        this.amount=amount;
-        this.isExpense=isExpense;
+        this.month = month;
+        this.amount = amount;
+        this.isExpense = isExpense;
     }
 }

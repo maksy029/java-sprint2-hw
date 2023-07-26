@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class MonthlyReport {
-     ArrayList<MonthlyReportRecord> monthlyReportRecords;
+    ArrayList<MonthlyReportRecord> monthlyReportRecords;
 
 
     public MonthlyReport(ArrayList<MonthlyReportRecord> monthlyReportRecords) {
@@ -11,10 +11,10 @@ public class MonthlyReport {
 
     // посчитать все доходы за месяц по всем записям из внутреннего ArrayList<MonthlyReportRecord> monthlyReportRecords;
     public double getSumMonthlyIncomes() {
-        double sumMonthlyIncomes=0;
+        double sumMonthlyIncomes = 0;
         for (MonthlyReportRecord mRecord : monthlyReportRecords) {
             if (!mRecord.isExpense) {
-                sumMonthlyIncomes=sumMonthlyIncomes+mRecord.unitPrice*mRecord.quantity;
+                sumMonthlyIncomes = sumMonthlyIncomes + mRecord.unitPrice * mRecord.quantity;
             }
         }
         return sumMonthlyIncomes;
@@ -22,13 +22,13 @@ public class MonthlyReport {
 
     // то же самое для трат
     public double getSumMonthlyExpenses() {
-        double sumMonthlyExpenses=0;
+        double sumMonthlyExpenses = 0;
         for (MonthlyReportRecord mRecord : monthlyReportRecords) {
             if (mRecord.isExpense) {
-                sumMonthlyExpenses = sumMonthlyExpenses+mRecord.unitPrice*mRecord.quantity;
+                sumMonthlyExpenses = sumMonthlyExpenses + mRecord.unitPrice * mRecord.quantity;
             }
         }
-        return sumMonthlyExpenses ;
+        return sumMonthlyExpenses;
     }
 
 }

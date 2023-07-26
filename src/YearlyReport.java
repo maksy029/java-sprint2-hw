@@ -30,21 +30,20 @@ public class YearlyReport {
     }
 
     //прибыль по каждому месяцу
-    public double getMonthlyProfit (int month) {
-        double monthlyProfit=0;
-        for (YearlyReportRecord yRecord : yearlyReportRecords) {
-            monthlyProfit=getMonthlyIncomes(month) - getMonthlyExpenses(month);
-            }
-          return monthlyProfit;
+    public double getMonthlyProfit(int month) {
+        double monthlyProfit = 0;
+        monthlyProfit = getMonthlyIncomes(month) - getMonthlyExpenses(month);
+
+        return monthlyProfit;
     }
 
-    public double getAvgExpenses () {
+    public double getAvgExpenses() {
         double avgExpenses = 0;
-        double sumAllExpenses=0;
+        double sumAllExpenses = 0;
         for (YearlyReportRecord yRecord : yearlyReportRecords) {
             if (yRecord.isExpense) {
-                sumAllExpenses = sumAllExpenses+yRecord.amount;
-                avgExpenses=sumAllExpenses/yearlyReportRecords.size();
+                sumAllExpenses = sumAllExpenses + yRecord.amount;
+                avgExpenses = sumAllExpenses / yearlyReportRecords.size();
             }
         }
         return avgExpenses;
