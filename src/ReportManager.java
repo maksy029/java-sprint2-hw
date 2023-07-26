@@ -2,8 +2,11 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class ReportManager {
-    HashMap<Integer, MonthlyReport> monthlyReports = new HashMap<>();
+    final HashMap<Integer, MonthlyReport> monthlyReports = new HashMap<>();
     YearlyReport yearlyReport;
+
+    public ReportManager() {
+    }
 
     public void readMonthlyReport() {
         FileReader fileReader = new FileReader();

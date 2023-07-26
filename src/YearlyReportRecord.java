@@ -1,8 +1,8 @@
 public class YearlyReportRecord {
 
-    int month;
-    double amount;
-    boolean isExpense;
+    final int month;
+    final double amount;
+    final boolean isExpense;
 
     YearlyReportRecord(int month, double amount, boolean isExpense) {
         this.month = month;
